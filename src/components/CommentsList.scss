@@ -1,0 +1,26 @@
+.comments__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.comments__list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.comment__item{
+    list-style-type: none;
+    margin-bottom: 45px;
+    color: #B2EBF2;
+}
+.comment__info{
+    display: flex;
+    flex-direction: column;
+}
+.comment__username{
+    font-size: 20px;
+    color: #F0F4C3;
+    margin-bottom: 20px;
+    margin-right: auto;
+}

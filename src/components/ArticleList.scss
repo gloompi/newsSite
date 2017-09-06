@@ -1,0 +1,28 @@
+.articles__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px 25px;
+    width: 100%;
+}
+.article__item{
+    width: 80%;
+    height: auto;
+    list-style-type: none;
+    margin-bottom: 25px;
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+.article__title{
+    margin-bottom: 25px;
+    color: #fff;
+}
+.article__btn{
+    margin-bottom: 25px;
+}
+.article__text{
+    color: #fff;
+    margin-bottom: 25px;
+}
