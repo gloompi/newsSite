@@ -1,22 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import './ArticleList.scss';
 
 import Article from './Article.jsx';
-import CommentsList from './CommentsList.jsx';
-import {articles} from '../fixtures';
 
-export default function ArticleList(props) {
-    const articleElements = articles.map((item) => {
-        return <li  className="article__item" key={item.id}>
-            <Article article={item}>
-                <CommentsList comments={item.comments} />
-            </Article>
-        </li>
-    });
-    return (
-        <ul className="articles__list">
-            {articleElements}
-        </ul>
-    )
+export default class ArticleList extends Component {
+    state = {
+        openArticleId: null
+    }
+
+    render() {
+        const articleElements = this.props.articles.map(article => <li className="article__item" key={article.id}>
+            <Article 
+                article = {article} 
+                isOpen = {article.id === this.state.openArticleId} 
+                toggleOpen = {this.toggleOpenArticle(article.id)} 
+            />
+        </li>);
+
+        return (
+            <ul className="articles__list">
+                {articleElements}
+            </ul>
+        )
+    }
+
+    toggleOpenArticle = openArticleId => ev => {
+        this.setState({ openArticleId })
+    } 
 }

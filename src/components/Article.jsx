@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class Article extends Component {
-  constructor(props){
-    super(props)
+import CommentsList from './CommentsList.jsx';
 
-    this.state = {
-      isOpen: false
-    }
+export default class Article extends Component {
+  static propTypes = {
+    article: PropTypes.shape({
+      id:PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string
+    }).isRequired
   }
 
   render() {
-    const {article} = this.props;
-    const {isOpen} = this.state;
+    const {article, isOpen, toggleOpen} = this.props;
     const style = {
       backgroundColor: '#008577',
       width: '100%',
@@ -28,24 +30,17 @@ export default class Article extends Component {
           className="article__btn"
           label={!isOpen ? 'open' : 'close'} 
           primary={true} 
-          onClick = {this.toggleOpen} 
+          onClick = {toggleOpen} 
         />
         {this.getBody()}
-        <div className="comment__wrap">{this.props.children}</div>
+        <div className="comment__wrap"><CommentsList comments={article.comments} /></div>
       </Paper>
     )
   }
 
   getBody() {
-    if(!this.state.isOpen) return null;
-    const {article} = this.props
+    const {article, isOpen} = this.props;
+    if(!isOpen) return null;
     return <section className="article__text">{article.text}</section>;
   }
-
-  toggleOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
 }
-
