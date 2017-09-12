@@ -1,0 +1,21 @@
+.add__comment-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    color: #fff;
+    span{
+        margin-bottom: 15px;
+    }
+}
+.add__comment-user{
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+.add__comment-area{
+    border: none;
+    margin-bottom: 25px;
+}
+.form__input-error{
+    border: 2px solid #FF5722;
+}

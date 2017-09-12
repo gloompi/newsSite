@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 import history from './history';
 
-import App from './App.jsx';
+import store from './store';
+
+import Root from './components/Root.jsx';
 
 render(
-  <App />,
+  <Root />,
   document.getElementById('mount-point')
 );

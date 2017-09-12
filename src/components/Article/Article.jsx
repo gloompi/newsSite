@@ -1,17 +1,22 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import {connect} from 'react-redux';
 
-import CommentsList from './CommentsList.jsx';
+import {deleteArticle} from '../../AC';
 
-export default class Article extends Component {
+import CommentsList from '../CommentsList.jsx';
+
+class Article extends PureComponent {
   static propTypes = {
     article: PropTypes.shape({
       id:PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       text: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
   }
 
   render() {
@@ -29,18 +34,34 @@ export default class Article extends Component {
         <RaisedButton 
           className="article__btn"
           label={!isOpen ? 'open' : 'close'} 
-          primary={true} 
+          primary 
           onClick = {toggleOpen} 
         />
+        <RaisedButton 
+          label="delete" 
+          onClick={this.handleDelete} 
+        />
         {this.getBody()}
-        <div className="comment__wrap"><CommentsList comments={article.comments} /></div>
+        <div className="comment__wrap">
+          <CommentsList comments={article.comments} />
+        </div>
       </Paper>
     )
+  }
+
+  handleDelete = () => {
+    const {deleteArticle, article} = this.props;
+    deleteArticle(article.id);
+    console.log('deleting');
   }
 
   getBody() {
     const {article, isOpen} = this.props;
     if(!isOpen) return null;
-    return <section className="article__text">{article.text}</section>;
+    return <section className="article__text">
+      {article.text}
+    </section>;
   }
 }
+
+export default connect(null, {deleteArticle})(Article);
