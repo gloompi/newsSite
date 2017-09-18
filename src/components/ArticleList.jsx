@@ -6,6 +6,7 @@ import './ArticleList.scss';
 import accardeonWrap from '../decorators/accardeonWrap.jsx';
 
 import Article from './Article/Article.jsx';
+import {filteredArticlesSelector} from '../selectors';
 
 class ArticleList extends Component {
     static propTypes = {
@@ -41,16 +42,8 @@ class ArticleList extends Component {
     }
 }
 
-export default connect(({filters, articles}) => {
-    const {selected, dateRange: {from, to}} = filters;
-
-    const filteredArticles = articles.filter(article => {
-        const published = Date.parse(article.id);
-        return(!selected.length || selected.includes(article.id)) &&
-            (!from || !to || (published > from && published < to))
-    })
-
+export default connect((state) => {
     return{
-        articles: filteredArticles
+        articles: filteredArticlesSelector(state)
     }
 })(accardeonWrap(ArticleList));

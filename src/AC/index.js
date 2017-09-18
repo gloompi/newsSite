@@ -13,14 +13,16 @@ export function deleteArticle(id) {
     }
 }
 
-export function changeSelection(dateRange, selected){
+export function changeDateRange(dateRange) {
     return {
-        type: CHANGE_SELECTION
+        type: CHANGE_DATE_RANGE,
+        payload: { dateRange }
     }
 }
 
-export function changeDateRange(){
+export function changeSelection(selected) {
     return {
-        type: CHANGE_DATE_RANGE
+        type: CHANGE_SELECTION,
+        payload: { selected }
     }
 }

@@ -13,11 +13,10 @@ class Filters extends Component{
     }
     
     render(){
-        
         return(
             <div>
-                <Picker />
                 <Select />
+                <Picker />
             </div>
         )
     }
