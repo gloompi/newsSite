@@ -40,11 +40,12 @@ function getComments({comments, isOpen}) {
     if (!comments.length) return <p>No comments yet</p>
     
     return (
-        comments.map((item) => (
+        comments.map(id => (
             <li className='comment__item' 
-                key={item.id}><Comment 
-                user={item.user} 
-                text={item.text} />
+                key={id}>
+                <Comment 
+                    id={id} 
+                />
             </li>
             )
         )
