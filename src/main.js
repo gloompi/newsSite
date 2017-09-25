@@ -8,6 +8,8 @@ import store from './store';
 
 import Root from './components/Root.jsx';
 
+console.log('something')
+
 render(
   <Root />,
   document.getElementById('mount-point')
